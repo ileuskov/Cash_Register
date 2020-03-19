@@ -24,26 +24,26 @@ public class Cash_Register {
     }
 
     public void print_amount() { // printing out every number from an amount array. It show which note/coin was chosen and how many times
-        System.out.println("Here is how your change will be given back to you: " );
+        System.out.println("Here is how your change will be given back to you: ");
         int[] copy = this.amount_back.clone(); // cloning an amount array. This way we can use it without changing it
 
-            for (int i = 0; i < copy.length; i++) { // this loop runs 15 times and checks if there are some notes' and coins' marked in the amount_back array
-                int counter = 0; // creating a temporal variable to control how many times a note/coin appears in the array
-                int index = 0; // a temporal variable to control which note/coin is being checked now
-                while (copy[i] > 0) { // only run this part if the notes/coins are used in our change amount
-                    index = i; // if so, we remember its index
-                    copy[i]--; // post-decrementing its value in the copy array to avoid counting it twice
-                    counter++; // post-incrementing the counter to remember how many times the coin/note is used
-                }
+        for (int i = 0; i < copy.length; i++) { // this loop runs 15 times and checks if there are some notes' and coins' marked in the amount_back array
+            int counter = 0; // creating a temporal variable to control how many times a note/coin appears in the array
+            int index = 0; // a temporal variable to control which note/coin is being checked now
+            while (copy[i] > 0) { // only run this part if the notes/coins are used in our change amount
+                index = i; // if so, we remember its index
+                copy[i]--; // post-decrementing its value in the copy array to avoid counting it twice
+                counter++; // post-incrementing the counter to remember how many times the coin/note is used
+            }
 
-                if(counter > 0 && index <= 8){ // if is a note (0-8 index in the euro array) we print out how many times this note appeared in our money change algorithm
-                    System.out.println(counter + " time(s) " + (int) euro[index] + " Euro note(s)");
-                }
-                if(counter > 0 && index > 8){ // if is a coin (9-14 index in the euro array) we print out how many times this coin appeared in our money change algorithm
-                    System.out.println(counter + " time(s) " + (int) (euro[index] * 100) + " Euro cent(s)");
-                }
+            if (counter > 0 && index <= 8) { // if is a note (0-8 index in the euro array) we print out how many times this note appeared in our money change algorithm
+                System.out.println(counter + " time(s) " + (int) euro[index] + " Euro note(s)");
+            }
+            if (counter > 0 && index > 8) { // if is a coin (9-14 index in the euro array) we print out how many times this coin appeared in our money change algorithm
+                System.out.println(counter + " time(s) " + (int) (euro[index] * 100) + " Euro cent(s)");
             }
         }
+    }
 
     public void money_check() { // checking if all the coins and notes in the end really add up into that user's amount in the beginning
         double money_check = 0.0; // a double value that is going to store all the notes' and coins' value and represent the amount of money they have all together

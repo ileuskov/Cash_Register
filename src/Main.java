@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Welcome to our little cash register! We can give sort your change in the most optimal way. Please enter how much money in Euro would you like to get back?");
+        System.out.println("Welcome to our little cash register! We can sort your change in the most optimal way. Please enter how much money in Euro would you like to get back?");
         System.out.println("Example: 10.55 or any number with 2 integers after decimal point: (x)x.xx");
 
         Scanner s = new Scanner(System.in);
