@@ -1,38 +1,26 @@
+import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner s = new Scanner(System.in);
 
-        double money = Double.parseDouble(s.nextLine());
+        Cash_Register a = new Cash_Register(22.44);
+        a.count_change();
+        a.print_amount();
+        a.money_check();
+        Scanner s = new Scanner(System.in);
         s.close();
 
-        double money_copy = money;
 
-        double[] euro = {500, 200, 100, 50, 20, 10, 5, 2, 1, 0.5, 0.2, 0.1, 0.05, 0.02, 0.01};
-        int[] amount = new int[15];
+        // 1. create a class
+        // 2. constructor with a Big Decimal (from user)
+        // 3. A method hidden in the class;
+        // 4. Creating an object with a parameter from the user and calling the method of the class;
+        // 5. 1 method with an array, second one void with print
 
-        for(int i = 0; i< euro.length; i++){
-            while(money_copy >= euro[i]){
-                money_copy -= euro[i];
-                amount[i]++;
-            }
-        }
-        for(int i = 0; i<amount.length; i++){
-            System.out.println(amount[i]);
-        }
-        double money_check = 0.0;
-        for(int i = 0; i<amount.length; i++){
-            while(amount[i] > 0){
-                money_check += euro[i];
-                amount[i]--;
-            }
-        }
-        System.out.println(money_check);
+        // print it nicely; run while and post-decrement it until 0 to print the amount from euro[i]
 
-        if(money == money_check){
-            System.out.println("Congratulations!");
-        }
+
     }
 }
 
