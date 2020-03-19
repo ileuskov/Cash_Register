@@ -3,25 +3,19 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        System.out.println("Welcome to our little cash register! We can give sort your change in the most optimal way. Please enter how much money in Euro would you like to get back?");
+        System.out.println("Example: 10.55 or any number with 2 integers after decimal point: (x)x.xx");
 
-        Cash_Register a = new Cash_Register(22.44);
-        a.count_change();
-        a.print_amount();
-        a.money_check();
         Scanner s = new Scanner(System.in);
+        Double number = s.nextDouble();
         s.close();
 
-
-        // 1. create a class
-        // 2. constructor with a Big Decimal (from user)
-        // 3. A method hidden in the class;
-        // 4. Creating an object with a parameter from the user and calling the method of the class;
-        // 5. 1 method with an array, second one void with print
-
-        // print it nicely; run while and post-decrement it until 0 to print the amount from euro[i]
-
-
+        System.out.println("\n***** *****\n");
+        Cash_Register a = new Cash_Register(number);
+        a.count_change();
+        a.print_amount();
+        System.out.println("\n***** *****\n");
+        a.money_check();
     }
 }
 
-// add a BigDecimal and classes? Would be great

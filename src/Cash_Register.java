@@ -24,33 +24,44 @@ public class Cash_Register {
     }
 
     public void print_amount() { // printing out every number from an amount array. It show which note/coin was chosen and how many times
-        for (int i = 0; i < this.amount_back.length; i++) {
-            System.out.println(amount_back[i]); // CHANGE: INSTEAD OF PRINTING 0 and 1. Transfer into real money;
+        System.out.println("Here is how your change will be given back to you: " );
+        int[] copy = this.amount_back.clone(); // cloning an amount array. This way we can use it without changing it
 
-            /*for (int i = 0; i < amount_back.length; i++) {
-                while (amount_back[i] > 0) {
-                    money_check += euro[i];
-                    amount_back[i]--;
+            for (int i = 0; i < copy.length; i++) { // this loop runs 15 times and checks if there are some notes' and coins' marked in the amount_back array
+                int counter = 0; // creating a temporal variable to control how many times a note/coin appears in the array
+                int index = 0; // a temporal variable to control which note/coin is being checked now
+                while (copy[i] > 0) { // only run this part if the notes/coins are used in our change amount
+                    index = i; // if so, we remember its index
+                    copy[i]--; // post-decrementing its value in the copy array to avoid counting it twice
+                    counter++; // post-incrementing the counter to remember how many times the coin/note is used
                 }
-             */
-        }
-    }
 
-    public void money_check() {
-        double money_check = 0.0;
-
-        for (int i = 0; i < this.amount_back.length; i++) {
-            while (this.amount_back[i] > 0) {
-                money_check += euro[i];
-                this.amount_back[i]--;
+                if(counter > 0 && index <= 8){ // if is a note (0-8 index in the euro array) we print out how many times this note appeared in our money change algorithm
+                    System.out.println(counter + " time(s) " + (int) euro[index] + " Euro note(s)");
+                }
+                if(counter > 0 && index > 8){ // if is a coin (9-14 index in the euro array) we print out how many times this coin appeared in our money change algorithm
+                    System.out.println(counter + " time(s) " + (int) (euro[index] * 100) + " Euro cent(s)");
+                }
             }
         }
-        BigDecimal temp = new BigDecimal(Double.toString(money_check));
-        BigDecimal real_check = temp.setScale(2, RoundingMode.CEILING);
 
-        System.out.println("The amount of money you were supposed to be given is: " + this.money_back);
-        System.out.println("The amount of money you were given is: " + real_check);
-        if (real_check.equals(BigDecimal.valueOf(this.money_back))) {
+    public void money_check() { // checking if all the coins and notes in the end really add up into that user's amount in the beginning
+        double money_check = 0.0; // a double value that is going to store all the notes' and coins' value and represent the amount of money they have all together
+
+        for (int i = 0; i < this.amount_back.length; i++) { // this loop runs 15 times and checks if there are some notes' and coins' marked in the amount_back array
+            while (this.amount_back[i] > 0) { // if there are indeed some coins and notes used
+                money_check += euro[i]; // then we add their value (which is stored in the euro array) to the money_check variable
+                this.amount_back[i]--; // and post-decrement the amount_back elements so that we don't count them 2 times
+            }
+        }
+        BigDecimal temp = new BigDecimal(Double.toString(money_check)); // Initializing a Big Decimal variable. That is used to be 100% sure that the decimal numbers match up
+        BigDecimal real_check = temp.setScale(2, RoundingMode.CEILING); // Another reason for the Big Decimal is that we can control scale handling
+
+        System.out.println("The amount of money you were supposed to be given is: " + this.money_back); // Printing out the initial amount of money
+        System.out.println("The amount of money you were given is: " + real_check); // Printing out the value of all the bills and coins that were used to represent the initial amount of money
+        System.out.println("");
+
+        if (real_check.equals(BigDecimal.valueOf(this.money_back))) { // Checking if the values of those 2 variables are correct
             System.out.println("Congratulations! You have received a correct amount of change!");
         } else {
             System.out.println("Oh my, oh my! Something is not right here. Where is the money, Lebowski?");
