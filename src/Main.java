@@ -10,12 +10,14 @@ public class Main {
         Double number = s.nextDouble();
         s.close();
 
+
         System.out.println("\n***** *****\n");
         Cash_Register a = new Cash_Register(number);
         a.count_change();
         a.print_amount();
         System.out.println("\n***** *****\n");
         a.money_check();
+
     }
 }
 
